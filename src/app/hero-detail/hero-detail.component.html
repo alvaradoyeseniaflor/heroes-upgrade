@@ -1,0 +1,55 @@
+<div *ngIf="hero">
+  <form class="form-group" [formGroup]="heroForm" (ngSubmit)="save()">
+    <h2>{{hero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <div class="form-input" >
+      <label for="hero-name"
+        [className]="heroForm.get('heroName')?.invalid && (heroForm.get('heroName')?.touched ||  heroForm.get('heroName')?.dirty) ? 'label-error' : 'label-success'">Hero name: </label>
+      <input id="hero-name" formControlName="heroName" maxlength="50" placeholder="Hero name"
+        [className]="heroForm.get('heroName')?.invalid && (heroForm.get('heroName')?.touched ||  heroForm.get('heroName')?.dirty) ? 'input-error' : 'input-success'"/>
+      <div *ngIf="heroForm.get('heroName')?.invalid && heroForm.get('heroName')?.errors && (heroForm.get('heroName')?.touched ||  heroForm.get('heroName')?.dirty)">
+        <span class="text-error" *ngIf="!heroForm.get('heroName')?.hasError('uniqueHeroName')">Hero name must be unique.</span>
+      </div>
+    </div>
+    <div class="form-input">
+      <label for="hero-age"
+      [className]="heroForm.get('age')?.invalid && (heroForm.get('age')?.touched ||  heroForm.get('age')?.dirty) ? 'label-error' : 'label-success'">Hero age: </label>
+      <input type="number" name="age" id="age" formControlName="age" placeholder="Hero age"
+      [className]="heroForm.get('age')?.invalid && (heroForm.get('age')?.touched ||  heroForm.get('age')?.dirty) ? 'input-error' : 'input-success'"/>
+      <div *ngIf="heroForm.get('age')?.invalid && heroForm.get('age')?.errors && (heroForm.get('age')?.touched ||  heroForm.get('age')?.dirty)">
+        <span class="text-error" *ngIf="heroForm.get('age')?.hasError('required')"> Hero age is required for update.</span>
+      </div>
+    </div>
+    <div class="form-input">
+      <label for="hero-description"
+      [className]="heroForm.get('description')?.invalid && (heroForm.get('description')?.touched ||  heroForm.get('description')?.dirty) ? 'label-error' : 'label-success'">Hero description: </label>
+      <input id="hero-description" formControlName="description" placeholder="Hero description"
+      [className]="heroForm.get('description')?.invalid && (heroForm.get('description')?.touched ||  heroForm.get('description')?.dirty) ? 'input-error' : 'input-success'"/>
+      <div *ngIf="heroForm.get('description')?.invalid && heroForm.get('description')?.errors && (heroForm.get('description')?.touched ||  heroForm.get('description')?.dirty)">
+        <span class="text-error" *ngIf="!heroForm.get('description')?.hasError('validDescription')"> Do not include hero name.</span>
+        <span class="text-error" *ngIf="heroForm.get('description')?.hasError('ageRequiredForDescription')"> Hero age is required to enter description.</span>
+      </div>
+    </div>
+    <div class="form-input">
+      <label for="hero-email"
+      [className]="heroForm.get('email')?.invalid && (heroForm.get('email')?.touched ||  heroForm.get('email')?.dirty) ? 'label-error' : 'label-success'">Hero email: </label>
+      <input id="hero-email" formControlName="email" placeholder="Hero email"
+      [className]="heroForm.get('email')?.invalid && (heroForm.get('email')?.touched ||  heroForm.get('email')?.dirty) ? 'input-error' : 'input-success'"/>
+      <div *ngIf="heroForm.get('email')?.invalid && heroForm.get('email')?.errors && (heroForm.get('email')?.touched ||  heroForm.get('email')?.dirty)">
+        <span class="text-error" *ngIf="heroForm.get('email')?.hasError('email')"> Please enter valid email.</span>
+      </div>
+    </div>
+    <div>
+      <label for="hero-arch-enemy">Arch enemy: </label>
+      <select name="hero-arch-enemy" id="hero-arch-enemy" formControlName="enemy">
+        <option value="" disabled>Select an Arch Enemy</option>
+        <option *ngFor="let enemy of heroes" [value]="enemy.name">
+          {{enemy.name}}
+        </option>
+      </select>
+    </div>
+    <button type="button" (click)="goBack()">go back</button>
+
+    <button type="submit" [disabled]="!heroForm.valid">save</button>
+  </form>
+</div>

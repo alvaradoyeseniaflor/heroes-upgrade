@@ -1,0 +1,60 @@
+/* HeroDetailComponent's private CSS styles */
+label {
+  color: #435960;
+  font-weight: bold;
+}
+input {
+  font-size: 1em;
+  padding: .5rem;
+}
+button {
+  margin-top: 20px;
+  margin-right: .5rem;
+  background-color: #eee;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+
+.form-group {
+  display: block;
+}
+
+.form-group label {
+  flex: none;
+  width: 150px;
+  display: inline-block
+}
+
+.form-group input {
+  flex: 1 1 auto;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.input-error {
+  border: red solid 3px;
+}
+
+label.label-error {
+  color: red;
+}
+
+.form-input > div {
+  display: inline;
+  margin-left: 10px;
+  color: red;
+}
+
+select {
+  height: 38px;
+  width: 187px;
+}
