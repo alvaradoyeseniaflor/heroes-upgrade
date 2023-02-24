@@ -5,10 +5,8 @@ import { Location } from '@angular/common';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { AbstractControl, FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
+import {Title} from "@angular/platform-browser";
+
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
@@ -20,7 +18,7 @@ export class HeroDetailComponent implements OnInit {
   heroes!: Hero[];
 
   heroForm = new FormGroup({
-    heroName: new FormControl('', [ 
+    heroName: new FormControl('', [
       this._validateUniqueHeroName().bind(this),
     ]),
     age: new FormControl('', [
@@ -36,7 +34,8 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private title: Title
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +78,10 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+        this.hero = hero
+        this.title.setTitle('Tour of Heroes ' + this.hero.name);
+      });
   }
 
   goBack(): void {

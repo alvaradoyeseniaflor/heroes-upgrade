@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="form-input">
-      <label for="hero-age"
+      <label for="age"
       [className]="heroForm.get('age')?.invalid && (heroForm.get('age')?.touched ||  heroForm.get('age')?.dirty) ? 'label-error' : 'label-success'">Hero age: </label>
       <input type="number" name="age" id="age" formControlName="age" placeholder="Hero age"
       [className]="heroForm.get('age')?.invalid && (heroForm.get('age')?.touched ||  heroForm.get('age')?.dirty) ? 'input-error' : 'input-success'"/>

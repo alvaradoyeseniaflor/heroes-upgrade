@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -32,6 +32,9 @@ import { MessagesComponent } from './messages/messages.component';
     DashboardComponent,
     MessagesComponent,
     HeroSearchComponent
+  ],
+  providers: [
+    Title
   ],
   bootstrap: [ AppComponent ]
 })
